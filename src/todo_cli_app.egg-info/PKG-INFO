@@ -1,0 +1,106 @@
+Metadata-Version: 2.4
+Name: todo-cli-app
+Version: 0.1.0
+Summary: A simple CLI todo application with in-memory storage
+Author: Todo App Team
+Author-email: Todo App Team <todo@example.com>
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: requires-python
+
+# Todo CLI Application
+
+A simple command-line interface (CLI) todo application with in-memory storage, built with Python.
+
+## Features
+
+- Interactive menu-driven interface with numbered options (1-6 + 0 to exit)
+- Add new tasks with titles and optional descriptions
+- View all tasks with their ID, title, description, and completion status
+- Mark tasks as complete or incomplete
+- Update existing tasks' titles and descriptions
+- Delete tasks by ID
+
+## Prerequisites
+
+- Python 3.13 or higher
+- UV package manager (optional but recommended)
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies (if any) with pip
+
+## Usage
+
+### Interactive Mode (Recommended)
+```bash
+python src/cli/main.py
+```
+
+### Command Line Mode
+```bash
+python -m src.cli.main --help
+```
+
+## Running with UV
+
+### Setup
+```bash
+# Create virtual environment with UV
+uv venv
+
+# Activate the virtual environment
+source .venv/bin/activate
+
+# Install the project in development mode
+uv pip install -e .
+```
+
+### Run the Application
+```bash
+# Run with UV
+uv run python src/cli/main.py
+
+# Or run the installed script
+uv run todo
+```
+
+### Alternative UV Method
+```bash
+# Run directly with UV without installation
+uv run --with setuptools src/cli/main.py
+```
+
+## Architecture
+
+The application follows a clean architecture with clear separation of concerns:
+
+- `models/task.py`: Contains the Task data model
+- `services/task_manager.py`: Contains business logic and in-memory storage
+- `cli/main.py`: Contains the interactive command-line interface
+
+## Testing
+
+To run the unit tests:
+```bash
+python -m unittest discover tests/unit/
+```
+
+To run the integration tests:
+```bash
+python -m unittest discover tests/integration/
+```
+
+## Limitations
+
+- Data is stored only in memory and will be lost when the application exits
+- No persistent storage
+- Single-user application

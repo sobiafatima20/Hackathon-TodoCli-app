@@ -1,0 +1,141 @@
+# Todo CLI Application
+
+A simple command-line interface (CLI) todo application with in-memory storage, built with Python.
+
+## Features
+
+### Basic Features
+- Interactive menu-driven interface with numbered options (1-6 + 0 to exit)
+- Add new tasks with titles and optional descriptions
+- View all tasks with their ID, title, description, and completion status
+- Mark tasks as complete or incomplete
+- Update existing tasks' titles and descriptions
+- Delete tasks by ID
+
+### Intermediate Features (New!)
+- **Priority Levels**: Assign high, medium, or low priority to tasks
+- **Tags**: Add tags to tasks for categorization and easy searching
+- **Search**: Search tasks by keyword across title, description, and tags (case-insensitive)
+- **Filter**: Filter tasks by completion status, priority, and due date
+- **Sort**: Sort tasks by title, priority, or due date (earliest first)
+- **Due Dates**: Set due date for tasks for better organization
+
+## Prerequisites
+
+- Python 3.13 or higher
+- UV package manager (recommended)
+
+## Setup with UV Virtual Environment
+
+### 1. Create Virtual Environment
+```bash
+# Create virtual environment using UV
+uv venv
+
+# Or specify Python version explicitly
+uv venv --python 3.13
+```
+
+### 2. Activate Virtual Environment
+```bash
+# On Linux/macOS:
+source .venv/bin/activate
+
+# On Windows:
+# .venv\Scripts\activate
+```
+
+### 3. Install Project Dependencies
+```bash
+# Install in development mode
+pip install -e .
+```
+
+## Usage
+
+### Interactive Mode (Recommended)
+```bash
+# Direct run
+python src/cli/main.py
+
+# With UV
+uv run python src/cli/main.py
+
+# Or run the installed script
+uv run todo
+```
+
+### Interactive Menu Options:
+```
+======= TODO APPLICATION =======
+           MAIN MENU
+================================
+1. Add Task
+2. View All Tasks
+3. Mark Task Complete
+4. Mark Task Incomplete
+5. Update Task
+6. Delete Task
+7. Search Tasks
+8. Filter Tasks
+9. Sort Tasks
+0. Exit
+================================
+```
+
+## Running with UV (Alternative Methods)
+
+### Method 1: Direct UV Run
+```bash
+# Run directly without installing
+uv run --with setuptools python src/cli/main.py
+```
+
+### Method 2: Install and Run
+```bash
+# Install project in virtual environment
+uv pip install -e .
+
+# Run the installed command
+uv run todo
+```
+
+## Architecture
+
+The application follows a clean architecture with clear separation of concerns:
+
+- `models/task.py`: Contains the Task data model with support for priority, tags, and due dates
+- `services/task_manager.py`: Contains business logic, in-memory storage, and advanced operations (search, filter, sort)
+- `cli/main.py`: Contains the interactive command-line interface with support for all features
+
+## Testing
+
+To run the unit tests:
+```bash
+python -m unittest discover tests/unit/
+```
+
+To run the integration tests:
+```bash
+python -m unittest discover tests/integration/
+```
+
+## Troubleshooting
+
+### Virtual Environment Issues
+- If you get VIRTUAL_ENV warnings, make sure you've activated the environment:
+  ```bash
+  source .venv/bin/activate
+  ```
+
+### UV Run Issues
+- If `uv run` gives import errors, try:
+  ```bash
+  uv run --with setuptools --with uv pip install -e .
+  ```
+
+## Limitations
+
+- Data is stored only in memory and will be lost when the application exits
+- No persistent storage
+- Single-user application

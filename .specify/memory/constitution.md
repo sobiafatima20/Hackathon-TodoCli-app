@@ -1,55 +1,57 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: 2.0.0 → 3.0.0
+Modified principles: Expanded to include progressive feature layers and detailed constraints
+Added sections: Progressive Feature Layers (Basic, Intermediate, Advanced), detailed Architecture Decision Records guidance
+Removed sections: None
+Templates requiring updates:
+  - .specify/templates/plan-template.md ⚠ pending
+  - .specify/templates/spec-template.md ⚠ pending
+  - .specify/templates/tasks-template.md ⚠ pending
+Follow-up TODOs: None
+-->
+# The Evolution of Todo – Phase I Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-Driven Development (NON-NEGOTIABLE)
+No feature may be implemented without an approved specification; Each feature level (Basic, Intermediate, Advanced) must have separate specs; Code must strictly match the written specifications (no scope creep).
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### In-Memory First Architecture
+All data must remain in memory during runtime; No file system, database, or external persistence unless explicitly specified; Task state must persist consistently within a single execution session.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### CLI-First Design
+Application is strictly command-line based; No GUI, web UI, or browser-based interaction; All interactions must be text-based and user-friendly for terminal users.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Progressive Feature Layers
+Features must be implemented in clearly defined layers: Basic Level (Core Essentials – Mandatory): Add Task, Delete Task, Update Task, View Task List, Mark Task as Complete/Incomplete; Intermediate Level (Organization & Usability): Task Priorities (high/medium/low), Tags or Categories, Search tasks by keyword, Filter tasks by status/priority/date, Sort tasks; Advanced Level (Intelligent Features): Recurring Tasks, Due Dates with date & time support, Reminder logic (CLI-based notifications).
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Clean Code & Maintainability
+Follow PEP 8 standards; Clear separation of concerns: Models (Task structure), Services (Task management logic), CLI Interface (input/output handling); Functions must have single responsibility.
 
-### [PRINCIPLE_6_NAME]
+### Minimal Dependencies
+Use Python standard library only; No third-party libraries unless explicitly approved by specification; Environment managed via UV.
 
+## Additional Constraints
 
-[PRINCIPLE__DESCRIPTION]
+Technology stack: Python 3.13+ with UV for environment management
+Storage: In-memory only (no database, no files, no persistence)
+Interface: Console / command-line only (no GUI, web, or mobile interfaces)
+Performance: Fast startup and predictable behavior
+Code quality: PEP 8 compliance, proper documentation, test coverage
+Codebase: Beginner-readable codebase
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Workflow
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Specification first: All features require an approved specification before implementation
+Code review: All PRs require at least one approval before merging
+Testing gates: All tests must pass, new features require appropriate test coverage
+Quality gates: Code follows PEP 8, proper documentation, and clean architecture
+Deployment: Console application runs directly from command line
+Feature implementation: Follow progressive layers (Basic → Intermediate → Advanced)
+Architecture decisions: Document significant decisions in ADRs when impact is long-term
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other development practices and must be followed by all contributors; Amendments to this constitution require documentation, team approval, and migration plan; All PRs/reviews must verify compliance with these principles; Complexity must be justified with clear user benefit; Use CLAUDE.md for runtime development guidance; All future specs, plans, and tasks must comply with this constitution.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 3.0.0 | **Ratified**: 2025-12-28 | **Last Amended**: 2025-12-31
